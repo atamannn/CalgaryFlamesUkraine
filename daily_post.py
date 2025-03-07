@@ -29,7 +29,7 @@ def send_daily_post():
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": CHANNEL_ID,
-        "text": message,
+        "text": "TEST 1",
         "parse_mode": "Markdown"  # Optional: change if you prefer HTML or plain text
     }
     response = requests.post(url, data=payload)
@@ -39,10 +39,5 @@ def send_daily_post():
         print("Failed to send message:", response.text)
 
 # Schedule the post for 09:00 AM every day
-schedule.every().day.at("09:00").do(send_daily_post)
 
-print("Daily post scheduler started...")
-
-while True:
-    schedule.run_pending()
-    time.sleep(60)  # Check every minute
+send_daily_post()
